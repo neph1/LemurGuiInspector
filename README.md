@@ -91,10 +91,12 @@ Options (`GuiDumper.Options`): toggle `includeComponents`, `includeWorld`, `incl
 
 ## Build & test
 
-Standard Maven build (deps: `jme3-core` 3.8.1-stable, `lemur` 1.16.0, JUnit 5):
+Gradle 8+ build (deps: `jme3-core` 3.8.1-stable, `lemur` 1.16.0, JUnit 5,
+`jme3-desktop` for the headless tests). Generate the wrapper once if you want `./gradlew`:
 
 ```bash
-mvn test
+gradle wrapper   # once, to create gradlew + gradle/wrapper/*
+gradle test
 ```
 
 The tests run headless: they initialize `GuiGlobals` with a minimal `AssetManager`
