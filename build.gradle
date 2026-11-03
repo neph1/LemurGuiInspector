@@ -1,0 +1,38 @@
+plugins {
+    id 'java-library'
+}
+
+group = 'com.lemurguiinspector'
+version = '0.1.0-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.release = 11
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    api 'org.jmonkeyengine:jme3-core:3.8.1-stable'
+    api 'com.simsilica:lemur:1.16.0'
+
+    // AWTLoader for the bundled default font image; needed by the headless tests
+    testImplementation 'org.jmonkeyengine:jme3-desktop:3.8.1-stable'
+    testImplementation platform('org.junit:junit-bom:5.10.2')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events 'passed', 'failed', 'skipped'
+    }
+}
